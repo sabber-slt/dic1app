@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import '@fontsource/lalezar';
 import Head from 'next/head';
 import { useEffect } from 'react';
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import useUSer from '../utils/store/useUser';
 
@@ -48,13 +48,12 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <QueryClientProvider client={reactQueryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
-        <Hydrate state={pageProps.dehydrateState}>
-          <ChakraProvider>
-            <AppContainer>
-              <Component {...pageProps} />
-            </AppContainer>
-          </ChakraProvider>
-        </Hydrate>
+
+        <ChakraProvider>
+          <AppContainer>
+            <Component {...pageProps} />
+          </AppContainer>
+        </ChakraProvider>
       </QueryClientProvider>
     </>
   );
