@@ -47,6 +47,7 @@ const SearchWord = () => {
     fetchData();
   }, [inputText]);
 
+  console.log(res);
   const search = async (value) => {
     const t = await fetch(
       `http://xyp.ir/textarea.php?q=${value}&source=${langSource}&target=${langTarget}&app=appi`
