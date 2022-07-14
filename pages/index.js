@@ -4,12 +4,17 @@ import SearchWord from '../components/base/SearchWord';
 import Navbar from '../components/Navbar';
 import useUSer from '../utils/store/useUser';
 export default function Home() {
-  const { setLang } = useUSer();
+  const { setLang, lang } = useUSer();
   useEffect(() => {
-    navigator.languages && navigator.languages.length
-      ? setLang(navigator.languages)
-      : setLang(navigator.language[0]);
-  }, [setLang]);
+    const res = async () => {
+      const user = await fetch('https://ipinfo.io?token=b8084616ba7a7d');
+      const userJson = await user.json();
+
+      setLang(['en', userJson.country.toLowerCase(), 'en']);
+    };
+    res();
+  }, []);
+
   return (
     <Box
       bg="gray.50"
