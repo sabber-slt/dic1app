@@ -2,10 +2,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import '@fontsource/lalezar';
 import Head from 'next/head';
-import { useEffect } from 'react';
+
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import useUSer from '../utils/store/useUser';
 
 const AppContainer = styled.div`
   font-family: 'Lalezar', sans-serif;
@@ -20,12 +19,6 @@ const reactQueryClient = new QueryClient({
 });
 
 function MyApp({ Component, pageProps }) {
-  const { setLang } = useUSer();
-  useEffect(() => {
-    navigator.languages && navigator.languages.length
-      ? setLang(navigator.languages)
-      : setLang(navigator.language[0]);
-  }, [setLang]);
   return (
     <>
       <Head>
